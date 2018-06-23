@@ -1,0 +1,13 @@
+.login {
+  max-width: 400px;  
+  text-align: center;
+}
+
+.login-select {
+  min-width: 50%;
+}
+
+.login-button {
+  display: block;
+  margin: 1em auto;
+}
