@@ -29,4 +29,4 @@ class NavComponent extends PureComponent {
   }
 }
 
-export default NavComponent;
+export default connect()(NavComponent);

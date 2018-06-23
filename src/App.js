@@ -9,6 +9,7 @@ import { loadUsers } from './redux/users/users.actions';
 import {
   Login,
   Nav,
+  PrivateRoute,
 } from './components';
 
 class App extends Component {
@@ -25,9 +26,11 @@ class App extends Component {
       <div>
         {currentUser && <Nav />}
         {!currentUser && <Route exact path="/" component={Login} />}
-        {currentUser && <Route exact path="/" render={() => (
-          <div className="container">logged</div>
-        )} />}
+        <PrivateRoute exact path="/" render={() => {
+          return (
+            <div>test</div>
+          )
+        }} />
       </div>
     );
   }
