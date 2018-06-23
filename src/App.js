@@ -6,7 +6,10 @@ import './App.css';
 
 import { loadUsers } from './redux/users/users.actions';
 
-import { Login } from './components';
+import {
+  Login,
+  Nav,
+} from './components';
 
 class App extends Component {
   componentDidMount() {
@@ -20,6 +23,7 @@ class App extends Component {
 
     return (
       <div>
+        {currentUser && <Nav />}
         {!currentUser && <Route exact path="/" component={Login} />}
         {currentUser && <Route exact path="/" render={() => (
           <div className="container">logged</div>

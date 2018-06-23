@@ -1,0 +1,32 @@
+.nav {
+  left: 0;
+  max-width: initial;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.nav-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-option {
+  color: #636e72;
+  display: block;
+  font-weight: bold;
+}
+
+.nav-option:hover {
+  background-color: #636e72;
+  color: #2d3436;
+}
+
+.nav-option a {
+  color: inherit;
+  display: block;
+  padding: 1em;
+  text-decoration: inherit;
+}
