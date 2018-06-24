@@ -20,7 +20,7 @@ class NavComponent extends PureComponent {
       <nav className="container nav">
         <ul className="nav-list">
           <li className="nav-option">
-            <Link onClick={handleLogout} to="/">Logout</Link>
+            <Link onClick={handleLogout} to="/login">Logout</Link>
           </li>
         </ul>
       </nav>

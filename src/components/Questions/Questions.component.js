@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { loadQuestions } from '../../redux/questions/questions.actions';
 
 import './Questions.styles.css';
@@ -109,8 +111,9 @@ class QuestionsComponent extends Component {
         <ul className="questions-list">
           {
             filterQuestions().map(question => (
-              <li
+              <Link
                 className="questions-question"
+                to={`/question/${question.id}`}
                 key={question.id}
               >
                 <div className="questions-question-container">
@@ -125,11 +128,11 @@ class QuestionsComponent extends Component {
                       {question.author}
                     </span>
                     <span className="questions-question-id">
-                      {question.timestamp}
+                      {question.id}
                     </span>
                   </div>
                 </div>
-              </li>
+              </Link>
             ))
           }
         </ul>

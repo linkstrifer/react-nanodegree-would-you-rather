@@ -35,9 +35,15 @@
 
 .questions-question {
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+  color: white;
   display: block;
-  padding: 1em;
   margin: .5em 0;
+  padding: 1em;
+  text-decoration: none;
+}
+
+.questions-question:hover {
+  background-color: rgba(255, 255, 255, .1);
 }
 
 .questions-question:last-child {

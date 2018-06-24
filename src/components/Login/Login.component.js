@@ -13,6 +13,7 @@ class LoginComponent extends PureComponent {
 
     if (selectedUser) {
       dispatch(login(selectedUser));
+      this.props.history.push('/');
     }
   };
 
@@ -62,6 +63,7 @@ class LoginComponent extends PureComponent {
 
 export default connect(state => (
   {
+    currentUser: state.currentUser,
     users: state.users,
   }
 ))(LoginComponent);

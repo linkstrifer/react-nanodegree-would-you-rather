@@ -10,6 +10,7 @@ import {
   Login,
   Nav,
   PrivateRoute,
+  Question,
   Questions,
 } from './components';
 
@@ -26,8 +27,9 @@ class App extends Component {
     return (
       <div>
         {currentUser && <Nav />}
-        {!currentUser && <Route exact path="/" component={Login} />}
+        <Route path="/login" component={Login} />
         <PrivateRoute exact path="/" component={Questions} />
+        <PrivateRoute path="/question/:id" component={Question} />
       </div>
     );
   }
