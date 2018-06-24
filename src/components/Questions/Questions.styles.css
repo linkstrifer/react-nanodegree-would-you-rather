@@ -2,16 +2,77 @@
 
 .questions-inputs {
   border: 0;
+  padding: 0;
+  text-align: right;
 }
 
 .questions-label {
+  background-color: rgba(255, 255, 255, .05);
+  cursor: pointer;
   display: inline-block;
+  font-size: .8em;
+  font-weight: bold;
+  margin: 0 1px;
+  padding: 1em;
 }
 
-.questions-label.checked {
-  border: 1px solid red;
+.questions-label.is-selected {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.questions-label:hover {
+  background-color: rgba(255, 255, 255, .5);
 }
 
 .questions-label input {
   display: none;
+}
+
+.questions-list {
+  margin: 0;
+  padding: 0;
+}
+
+.questions-question {
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  display: block;
+  padding: 1em;
+  margin: .5em 0;
+}
+
+.questions-question:last-child {
+  border-bottom: 0;
+}
+
+.questions-question-container {
+  align-items: center;
+  display: flex;
+}
+
+.questions-question-avatar {
+  border-radius: 50%;
+  height: 60px;
+  margin: 0;
+  overflow: hidden;
+  width: 60px;
+}
+
+.questions-question-avatar img {
+  width: 100%;
+}
+
+.questions-question-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+}
+
+.questions-question-user {
+  font-weight: bold;
+  padding: .2em 0;
+}
+
+.questions-question-id {
+  font-size: .6em;
+  color: rgba(255, 255, 255, .2);
 }

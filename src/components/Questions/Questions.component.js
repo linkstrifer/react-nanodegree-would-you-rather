@@ -46,14 +46,16 @@ class QuestionsComponent extends Component {
   render() {
     const { handleFilter, filterQuestions } = this;
     const { filter } = this.state;
-    const { questions } = this.props;
+    const { questions, users } = this.props;
 
     return (
       <div className="container questions">
-        Questions
+        <h1>
+          Questions
+        </h1>
 
         <fieldset className="questions-inputs">
-          <label className="questions-label">
+          <label className={`questions-label ${filter === ALL ? 'is-selected' : ''}`}>
             <input
               checked={filter === ALL}
               className="questions-input"
@@ -63,7 +65,7 @@ class QuestionsComponent extends Component {
             />
             All
           </label>
-          <label className="questions-label">
+          <label className={`questions-label ${filter === ANSWERED ? 'is-selected' : ''}`}>
             <input
               checked={filter === ANSWERED}
               className="questions-input"
@@ -73,7 +75,7 @@ class QuestionsComponent extends Component {
             />
             Answered
           </label>
-          <label className="questions-label">
+          <label className={`questions-label ${filter === UNANSWERED ? 'is-selected' : ''}`}>
             <input
               checked={filter === UNANSWERED}
               className="questions-input"
@@ -95,8 +97,23 @@ class QuestionsComponent extends Component {
         <ul className="questions-list">
           {
             filterQuestions().map(question => (
-              <li key={question.id}>
-                {question.id}
+              <li
+                className="questions-question"
+                key={question.id}
+              >
+                <div className="questions-question-container">
+                  <figure className="questions-question-avatar">
+                    <img src={users.find(user => user.id === question.author).avatarURL || ''} />
+                  </figure>
+                  <div className="questions-question-info">
+                    <span className="questions-question-user">
+                      {question.author}
+                    </span>
+                    <span className="questions-question-id">
+                      {question.id}
+                    </span>
+                  </div>
+                </div>
               </li>
             ))
           }
@@ -110,5 +127,6 @@ export default connect(state => (
   {
     currentUser: state.currentUser,
     questions: state.questions,
+    users: state.users,
   }
 ))(QuestionsComponent);
