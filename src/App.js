@@ -10,6 +10,7 @@ import {
   Login,
   Nav,
   PrivateRoute,
+  Questions,
 } from './components';
 
 class App extends Component {
@@ -26,11 +27,7 @@ class App extends Component {
       <div>
         {currentUser && <Nav />}
         {!currentUser && <Route exact path="/" component={Login} />}
-        <PrivateRoute exact path="/" render={() => {
-          return (
-            <div>test</div>
-          )
-        }} />
+        <PrivateRoute exact path="/" component={Questions} />
       </div>
     );
   }

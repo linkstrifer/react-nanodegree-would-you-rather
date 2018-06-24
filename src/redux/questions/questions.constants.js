@@ -1,0 +1,1 @@
+export const QUESTIONS_LOAD = 'QUESTIONS_LOAD';

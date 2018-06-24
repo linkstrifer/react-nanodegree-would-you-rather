@@ -1,0 +1,17 @@
+/* .questions {} */
+
+.questions-inputs {
+  border: 0;
+}
+
+.questions-label {
+  display: inline-block;
+}
+
+.questions-label.checked {
+  border: 1px solid red;
+}
+
+.questions-label input {
+  display: none;
+}
