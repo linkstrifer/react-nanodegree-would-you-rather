@@ -15,7 +15,6 @@ class NavComponent extends PureComponent {
 
   render() {
     const { handleLogout } = this;
-    const { currentUser } = this.props;
 
     return (
       <nav className="container nav">

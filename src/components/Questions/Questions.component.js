@@ -27,7 +27,8 @@ class QuestionsComponent extends Component {
 
   filterQuestions = () => {
     const { filter } = this.state;
-    const { questions, currentUser } = this.props;
+    const { questions: questionsList, currentUser } = this.props;
+    const questions = questionsList.sort(((a, b) => b.timestamp - a.timestamp));
 
     switch (filter) {
       case UNANSWERED:
@@ -43,9 +44,48 @@ class QuestionsComponent extends Component {
     }
   }
 
-  render() {
-    const { handleFilter, filterQuestions } = this;
+  renderFilter = () => {
+    const { handleFilter } = this;
     const { filter } = this.state;
+
+    return (
+      <fieldset className="questions-inputs">
+        <label className={`questions-label ${filter === ALL ? 'is-selected' : ''}`}>
+          <input
+            checked={filter === ALL}
+            className="questions-input"
+            onChange={handleFilter}
+            type="radio"
+            value={ALL}
+          />
+          All
+        </label>
+        <label className={`questions-label ${filter === ANSWERED ? 'is-selected' : ''}`}>
+          <input
+            checked={filter === ANSWERED}
+            className="questions-input"
+            onChange={handleFilter}
+            type="radio"
+            value={ANSWERED}
+          />
+          Answered
+        </label>
+        <label className={`questions-label ${filter === UNANSWERED ? 'is-selected' : ''}`}>
+          <input
+            checked={filter === UNANSWERED}
+            className="questions-input"
+            onChange={handleFilter}
+            type="radio"
+            value={UNANSWERED}
+          />
+          Unanswered
+        </label>
+      </fieldset>
+    );
+  }
+
+  render() {
+    const { filterQuestions, renderFilter } = this;
     const { questions, users } = this.props;
 
     return (
@@ -54,38 +94,10 @@ class QuestionsComponent extends Component {
           Questions
         </h1>
 
-        <fieldset className="questions-inputs">
-          <label className={`questions-label ${filter === ALL ? 'is-selected' : ''}`}>
-            <input
-              checked={filter === ALL}
-              className="questions-input"
-              onChange={handleFilter}
-              type="radio"
-              value={ALL}
-            />
-            All
-          </label>
-          <label className={`questions-label ${filter === ANSWERED ? 'is-selected' : ''}`}>
-            <input
-              checked={filter === ANSWERED}
-              className="questions-input"
-              onChange={handleFilter}
-              type="radio"
-              value={ANSWERED}
-            />
-            Answered
-          </label>
-          <label className={`questions-label ${filter === UNANSWERED ? 'is-selected' : ''}`}>
-            <input
-              checked={filter === UNANSWERED}
-              className="questions-input"
-              onChange={handleFilter}
-              type="radio"
-              value={UNANSWERED}
-            />
-            Unanswered
-          </label>
-        </fieldset>
+        {
+          questions.length > 0 &&
+          renderFilter()
+        }
 
         <div className="questions-loading">
           {
@@ -103,14 +115,17 @@ class QuestionsComponent extends Component {
               >
                 <div className="questions-question-container">
                   <figure className="questions-question-avatar">
-                    <img src={users.find(user => user.id === question.author).avatarURL || ''} />
+                    <img
+                      src={users.find(user => user.id === question.author).avatarURL || ''}
+                      alt={question.author}
+                    />
                   </figure>
                   <div className="questions-question-info">
                     <span className="questions-question-user">
                       {question.author}
                     </span>
                     <span className="questions-question-id">
-                      {question.id}
+                      {question.timestamp}
                     </span>
                   </div>
                 </div>

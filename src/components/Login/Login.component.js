@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { login } from './../../redux/currentUser/currentUser.actions';
@@ -16,10 +16,29 @@ class LoginComponent extends PureComponent {
     }
   };
 
+  renderInputs = () => (
+    <Fragment>
+      <select
+        className="login-select"
+        ref={this.selectedUser}
+      >
+        {this.props.users.map(user => (
+          <option key={user.id} value={user.id}>{user.name}</option>
+        ))}
+      </select>
+      <button className="login-button">
+        Login
+      </button>
+    </Fragment>
+  )
+
   selectedUser = React.createRef();
 
   render() {
-    const { handleSubmit, selectedUser } = this;
+    const {
+      handleSubmit,
+      renderInputs,
+    } = this;
     const { users } = this.props;
 
     return (
@@ -34,18 +53,8 @@ class LoginComponent extends PureComponent {
         }
         {
           users.length > 0 &&
-          <select
-            className="login-select"
-            ref={selectedUser}
-          >
-            {users.map(user => (
-              <option key={user.id} value={user.id}>{user.name}</option>
-            ))}
-          </select>
+          renderInputs()
         }
-        <button className="login-button">
-          Login
-        </button>
       </form>
     )
   };
