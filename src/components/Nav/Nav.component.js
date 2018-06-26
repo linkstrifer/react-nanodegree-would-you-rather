@@ -15,13 +15,31 @@ class NavComponent extends PureComponent {
 
   render() {
     const { handleLogout } = this;
+    const options = [
+      {
+        label: 'Home',
+        to: '/',
+      },
+      {
+        label: 'Logout',
+        onClick: handleLogout,
+        to: '/login',
+      },
+    ];
 
     return (
       <nav className="container nav">
         <ul className="nav-list">
-          <li className="nav-option">
-            <Link onClick={handleLogout} to="/login">Logout</Link>
-          </li>
+          {options.map(option => (
+            <li
+              className="nav-option"
+              key={option.to}
+            >
+              <Link {...option}>
+                {option.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     );

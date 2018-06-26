@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { answerQuestion } from '../../redux/questions/questions.actions';
@@ -49,37 +49,50 @@ class QuestionComponent extends PureComponent {
   }
 
   renderResults = () => {
-    const { question } = this.props;
+    const { question, currentUser } = this.props;
+    const vote = currentUser.answers[question.id];
+    console.log(vote);
     const totalVotes = [
       ...question.optionOne.votes,
       ...question.optionTwo.votes,
     ].length;
     const options = [
-      question.optionOne,
-      question.optionTwo,
+      {
+        ...question.optionOne,
+        id: 'optionOne',
+      },
+      {
+        ...question.optionTwo,
+        id: 'optionTwo',
+      },
     ];
 
     return (
-      <div className="question-results">
-        {
-          options.map(option => (
-            <div
-              className="question-result"
-              key={option.text}
-              style={{
-                width: `${(option.votes.length / totalVotes) * 100}%`
-              }}
-            >
-              <span className="question-result-label">
-                {option.text}
-              </span>
-              <span className="question-result-percent">
-                {`${parseInt((option.votes.length / totalVotes) * 100, 10)}%`}
-              </span>
-            </div>
-          ))
-        }
-      </div>
+      <Fragment>
+        <span className="question-result-convention">
+          Selected
+        </span>
+        <div className="question-results">
+          {
+            options.map(option => (
+              <div
+                className={`question-result ${option.id === vote ? 'is-selected' : ''}`}
+                key={option.id}
+                style={{
+                  width: `${(option.votes.length / totalVotes) * 100}%`
+                }}
+              >
+                <span className="question-result-label">
+                  {option.text}
+                </span>
+                <span className="question-result-percent">
+                  {`${parseInt((option.votes.length / totalVotes) * 100, 10)}%`}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </Fragment>
     )
   }
 
