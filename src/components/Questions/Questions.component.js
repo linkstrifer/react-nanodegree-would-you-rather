@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { loadQuestions } from '../../redux/questions/questions.actions';
@@ -35,11 +35,17 @@ class QuestionsComponent extends Component {
     switch (filter) {
       case UNANSWERED:
         return questions.filter(question => (
-          !question.votes.some(userId => userId === currentUser.id)
+          ![
+            ...question.optionOne.votes,
+            ...question.optionTwo.votes,
+          ].some(userId => userId === currentUser.id)
         ));
       case ANSWERED:
         return questions.filter(question => (
-          question.votes.some(userId => userId === currentUser.id)
+          [
+            ...question.optionOne.votes,
+            ...question.optionTwo.votes,
+          ].some(userId => userId === currentUser.id)
         ));
       default:
         return questions;
@@ -141,10 +147,12 @@ class QuestionsComponent extends Component {
   }
 }
 
-export default connect(state => (
-  {
-    currentUser: state.currentUser,
-    questions: state.questions,
-    users: state.users,
-  }
-))(QuestionsComponent);
+export default withRouter(
+  connect(state => (
+    {
+      currentUser: state.currentUser,
+      questions: state.questions,
+      users: state.users,
+    }
+  ))(QuestionsComponent)
+);

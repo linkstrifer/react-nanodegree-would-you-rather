@@ -1,4 +1,4 @@
-import { QUESTIONS_LOAD } from "./questions.constants";
+import { QUESTIONS_LOAD, QUESTIONS_ANSWER } from "./questions.constants";
 
 const initialState = [];
 
@@ -9,18 +9,22 @@ function questionsReducer(state = initialState, action) {
         .map(questionId => (
           {
             ...action.questions[questionId],
-            options: [
-              action.questions[questionId].optionOne,
-              action.questions[questionId].optionTwo,
-            ],
-            votes: [
-              ...action.questions[questionId].optionOne.votes,
-              ...action.questions[questionId].optionTwo.votes,
-            ]
           }
         ));
 
       return questions;
+    case QUESTIONS_ANSWER:
+      const newState = state.map(question => {
+        const newQuestion = question;
+
+        if (newQuestion.id === action.questionId) {
+          newQuestion[action.answer].votes.push(action.currentUser);
+        }
+
+        return question;
+      });
+
+      return newState;
     default:
       return state;
   }

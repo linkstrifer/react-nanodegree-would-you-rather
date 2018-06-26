@@ -1,34 +1,25 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
 
 class PrivateRouteComponent extends PureComponent {
   render() {
-    const { component: Component, currentUser, ...rest } = this.props;
+    const { currentUser, location, ...rest } = this.props;
+    const redirectURL = '/login';
 
-    return (
-      <Route
-      {...rest}
-        render={props => 
-          currentUser
-          ? <Component {...props} />
-          : <Redirect
-              to={{
-                pathname: '/login',
-                state: {
-                  from: props.location,
-                },
-              }}
-            />
-        }
-      />
-    )
+    if (!currentUser) {
+      return location.pathname !== redirectURL ? <Redirect to={redirectURL} /> : null;
+    }
+
+    return <Route {...rest} />;
   }
 }
 
-export default connect(state => (
-  {
-    currentUser: state.currentUser,
-  }
-))(PrivateRouteComponent);
+export default withRouter(
+  connect(state => (
+    {
+      currentUser: state.currentUser,
+    }
+  ))(PrivateRouteComponent)
+);

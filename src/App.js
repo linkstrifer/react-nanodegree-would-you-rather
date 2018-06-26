@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 import './App.css';
 
@@ -13,12 +13,14 @@ import {
   Question,
   Questions,
 } from './components';
+import { loadQuestions } from './redux/questions/questions.actions';
 
 class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch(loadUsers())
+    dispatch(loadUsers());
+    dispatch(loadQuestions());
   }
 
   render() {
@@ -30,14 +32,15 @@ class App extends Component {
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/" component={Questions} />
         <PrivateRoute path="/question/:id" component={Question} />
+        {/* <Route path="/question/:id" component={Question} /> */}
       </div>
     );
   }
 }
 
-export default connect(state => (
+export default withRouter(connect(state => (
   {
     currentUser: state.currentUser,
   }
 )
-)(App);
+)(App));
