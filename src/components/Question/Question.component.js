@@ -86,6 +86,7 @@ class QuestionComponent extends PureComponent {
                   {option.text}
                 </span>
                 <span className="question-result-percent">
+                  {option.votes.length} votes - 
                   {`${parseInt((option.votes.length / totalVotes) * 100, 10)}%`}
                 </span>
               </div>

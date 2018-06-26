@@ -20,7 +20,7 @@
 }
 
 .question-result.is-selected {
-  border-left: 10px solid #0984e3;
+  border-bottom: 10px solid #0984e3;
   position: relative;
 }
 

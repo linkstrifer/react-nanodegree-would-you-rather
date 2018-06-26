@@ -8,12 +8,12 @@ import './Login.styles.css';
 class LoginComponent extends PureComponent {
   handleSubmit = (event) => {
     event.preventDefault();
-    const { users, dispatch } = this.props;
+    const { users, dispatch, location } = this.props;
     const selectedUser = users.find(user => user.id === this.selectedUser.current.value);
 
     if (selectedUser) {
       dispatch(login(selectedUser));
-      this.props.history.push('/');
+      this.props.history.push(location.state.referrer);
     }
   };
 
