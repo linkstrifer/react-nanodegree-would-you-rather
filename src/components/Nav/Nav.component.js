@@ -15,6 +15,7 @@ class NavComponent extends PureComponent {
 
   render() {
     const { handleLogout } = this;
+
     const options = [
       {
         label: 'Home',
@@ -23,6 +24,10 @@ class NavComponent extends PureComponent {
       {
         label: 'Add question',
         to: '/add',
+      },
+      {
+        label: 'Leaderboard',
+        to: '/leaderboard',
       },
       {
         label: 'Logout',

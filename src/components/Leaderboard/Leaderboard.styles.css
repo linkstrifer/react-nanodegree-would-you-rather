@@ -1,0 +1,42 @@
+.leaderboard-list {
+  padding: 0;
+  margin: 0;
+}
+
+.leaderboard-user {
+  background-color: rgba(0, 0, 0, .15);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .5em;
+  padding: 1em;
+}
+
+.leaderboard-user-info {
+  align-items: center;
+  display: flex;
+}
+
+.leaderboard-user-avatar {
+  border-radius: 50%;
+  height: 50px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 50px;
+}
+
+.leaderboard-user-avatar img {
+  width: 100%;
+}
+
+.leaderboard-username {
+  display: block;
+  padding: .5em;
+}
+
+.leaderboard-points {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: .7em;
+}

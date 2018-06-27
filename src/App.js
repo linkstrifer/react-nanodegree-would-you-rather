@@ -14,6 +14,7 @@ import {
   Question,
   Questions,
   NotFound,
+  Leaderboard,
 } from './components';
 import { loadQuestions } from './redux/questions/questions.actions';
 
@@ -36,6 +37,7 @@ class App extends Component {
           <PrivateRoute exact path="/" component={Questions} />
           <PrivateRoute path="/question/:id" component={Question} />
           <PrivateRoute path="/add" component={Add} />
+          <PrivateRoute path="/leaderboard" component={Leaderboard} />
           <Route component={NotFound} />
         </Switch>
       </div>

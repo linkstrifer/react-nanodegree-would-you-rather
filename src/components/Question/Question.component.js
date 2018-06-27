@@ -51,7 +51,6 @@ class QuestionComponent extends PureComponent {
   renderResults = () => {
     const { question, currentUser } = this.props;
     const vote = currentUser.answers[question.id];
-    console.log(vote);
     const totalVotes = [
       ...question.optionOne.votes,
       ...question.optionTwo.votes,
