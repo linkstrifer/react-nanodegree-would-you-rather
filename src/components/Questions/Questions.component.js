@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { loadQuestions } from '../../redux/questions/questions.actions';
-
 import './Questions.styles.css';
 
 const ALL = 'all';
@@ -13,12 +11,6 @@ const UNANSWERED = 'unanswered';
 class QuestionsComponent extends Component {
   state = {
     filter: UNANSWERED,
-  }
-
-  componentDidMount() {
-    const { dispatch } = this.props;
-
-    dispatch(loadQuestions());
   }
 
   handleFilter = (event) => {
@@ -131,7 +123,7 @@ class QuestionsComponent extends Component {
                   </figure>
                   <div className="questions-question-info">
                     <span className="questions-question-user">
-                      {question.author}
+                      by {question.author}
                     </span>
                     <span className="questions-question-id">
                       {question.id}

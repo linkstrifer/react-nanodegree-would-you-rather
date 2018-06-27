@@ -10,10 +10,13 @@ class LoginComponent extends PureComponent {
     event.preventDefault();
     const { users, dispatch, location } = this.props;
     const selectedUser = users.find(user => user.id === this.selectedUser.current.value);
+    const redirectURL = location.state && location.state.referrer
+      ? location.state.referrer
+      : '/';
 
     if (selectedUser) {
       dispatch(login(selectedUser));
-      this.props.history.push(location.state.referrer);
+      this.props.history.push(redirectURL);
     }
   };
 

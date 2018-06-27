@@ -7,6 +7,7 @@ import './App.css';
 import { loadUsers } from './redux/users/users.actions';
 
 import {
+  Add,
   Login,
   Nav,
   PrivateRoute,
@@ -32,6 +33,7 @@ class App extends Component {
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/" component={Questions} />
         <PrivateRoute path="/question/:id" component={Question} />
+        <PrivateRoute path="/add" component={Add} />
         {/* <Route path="/question/:id" component={Question} /> */}
       </div>
     );

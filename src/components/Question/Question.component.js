@@ -36,7 +36,7 @@ class QuestionComponent extends PureComponent {
           id: 'optionTwo',
         }].map(option => (
           <button
-            key={option.text}
+            key={option.id}
             onClick={handleSelectOption}
             type="button"
             value={option.id}
@@ -74,23 +74,25 @@ class QuestionComponent extends PureComponent {
         </span>
         <div className="question-results">
           {
-            options.map(option => (
-              <div
-                className={`question-result ${option.id === vote ? 'is-selected' : ''}`}
-                key={option.id}
-                style={{
-                  width: `${(option.votes.length / totalVotes) * 100}%`
-                }}
-              >
-                <span className="question-result-label">
-                  {option.text}
-                </span>
-                <span className="question-result-percent">
-                  {option.votes.length} votes - 
-                  {`${parseInt((option.votes.length / totalVotes) * 100, 10)}%`}
-                </span>
-              </div>
-            ))
+            options.map(option => option.votes.length > 0 
+              ? (
+                <div
+                  className={`question-result ${option.id === vote ? 'is-selected' : ''}`}
+                  key={option.id}
+                  style={{
+                    width: `${(option.votes.length / totalVotes) * 100}%`
+                  }}
+                >
+                  <span className="question-result-label">
+                    {option.text}
+                  </span>
+                  <span className="question-result-percent">
+                    {option.votes.length} votes - 
+                    {`${parseInt((option.votes.length / totalVotes) * 100, 10)}%`}
+                  </span>
+                </div>
+              )
+              : null)
           }
         </div>
       </Fragment>

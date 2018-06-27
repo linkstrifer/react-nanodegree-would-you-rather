@@ -1,4 +1,4 @@
-import { QUESTIONS_LOAD, QUESTIONS_ANSWER } from "./questions.constants";
+import { QUESTIONS_LOAD, QUESTIONS_ANSWER, QUESTIONS_ADD } from "./questions.constants";
 
 const initialState = [];
 
@@ -25,6 +25,11 @@ function questionsReducer(state = initialState, action) {
       });
 
       return newState;
+    case QUESTIONS_ADD:
+      return [
+        ...state,
+        action.question,
+      ];
     default:
       return state;
   }

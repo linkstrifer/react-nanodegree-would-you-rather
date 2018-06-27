@@ -7,7 +7,7 @@ class PrivateRouteComponent extends PureComponent {
   render() {
     const { currentUser, location, ...rest } = this.props;
     const redirectURL = '/login';
-    const currentLocation = location.pathname;
+    const currentLocation = location.pathname !== redirectURL ? location.pathname : '/';
 
     if (!currentUser) {
       return location.pathname !== redirectURL

@@ -21,6 +21,10 @@ class NavComponent extends PureComponent {
         to: '/',
       },
       {
+        label: 'Add question',
+        to: '/add',
+      },
+      {
         label: 'Logout',
         onClick: handleLogout,
         to: '/login',
