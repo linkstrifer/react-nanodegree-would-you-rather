@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 
 import './App.css';
 
@@ -13,6 +13,7 @@ import {
   PrivateRoute,
   Question,
   Questions,
+  NotFound,
 } from './components';
 import { loadQuestions } from './redux/questions/questions.actions';
 
@@ -30,11 +31,13 @@ class App extends Component {
     return (
       <div>
         {currentUser && <Nav />}
-        <Route path="/login" component={Login} />
-        <PrivateRoute exact path="/" component={Questions} />
-        <PrivateRoute path="/question/:id" component={Question} />
-        <PrivateRoute path="/add" component={Add} />
-        {/* <Route path="/question/:id" component={Question} /> */}
+        <Switch>
+          <Route path="/login" component={Login} />
+          <PrivateRoute exact path="/" component={Questions} />
+          <PrivateRoute path="/question/:id" component={Question} />
+          <PrivateRoute path="/add" component={Add} />
+          <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }
