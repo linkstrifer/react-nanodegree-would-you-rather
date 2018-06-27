@@ -1,4 +1,7 @@
 .nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   left: 0;
   max-width: initial;
   padding: 0;
@@ -14,7 +17,7 @@
 }
 
 .nav-option {
-  color: #636e72;
+  color: white;
   display: block;
   font-weight: bold;
 }
@@ -29,4 +32,8 @@
   display: block;
   padding: 1em;
   text-decoration: inherit;
+}
+
+.nav-user {
+  padding: 1em;
 }

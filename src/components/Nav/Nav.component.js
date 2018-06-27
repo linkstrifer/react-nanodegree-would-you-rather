@@ -15,6 +15,7 @@ class NavComponent extends PureComponent {
 
   render() {
     const { handleLogout } = this;
+    const { currentUser } = this.props;
 
     const options = [
       {
@@ -50,9 +51,16 @@ class NavComponent extends PureComponent {
             </li>
           ))}
         </ul>
+        <div className="nav-user">
+          {currentUser.name}
+        </div>
       </nav>
     );
   }
 }
 
-export default connect()(NavComponent);
+export default connect(state => (
+  {
+    currentUser: state.currentUser,
+  }
+))(NavComponent);

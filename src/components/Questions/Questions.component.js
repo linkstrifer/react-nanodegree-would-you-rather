@@ -84,8 +84,18 @@ class QuestionsComponent extends Component {
     );
   }
 
+  formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  }
+
   render() {
-    const { filterQuestions, renderFilter } = this;
+    const {
+      filterQuestions,
+      renderFilter,
+      formatDate,
+    } = this;
     const { questions, users } = this.props;
 
     return (
@@ -132,7 +142,7 @@ class QuestionsComponent extends Component {
                       by {question.author}
                     </span>
                     <span className="questions-question-id">
-                      {question.id}
+                      {question.id} - {formatDate(question.timestamp)}
                     </span>
                   </div>
                 </div>
