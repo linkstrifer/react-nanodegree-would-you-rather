@@ -106,6 +106,12 @@ class QuestionsComponent extends Component {
           }
         </div>
 
+        {filterQuestions().length === 0 && (
+          <p>
+            0 Questions
+          </p>
+        )}
+
         <ul className="questions-list">
           {
             filterQuestions().map(question => (
