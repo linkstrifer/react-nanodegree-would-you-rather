@@ -37,7 +37,7 @@ class AddComponent extends PureComponent {
         onSubmit={handleSubmit}
       >
         <h1>
-          Add question
+          Would You Rather
         </h1>
         <div className="add-inputs">
           <input

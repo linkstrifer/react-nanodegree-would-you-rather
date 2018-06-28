@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { answerQuestion } from '../../redux/questions/questions.actions';
 
 import './Question.styles.css';
@@ -107,7 +107,7 @@ class QuestionComponent extends PureComponent {
      } = this.props;
 
      if (!author || !question) {
-       return null;
+       return <Redirect to="/404" />;
      }
 
     const answered = [
